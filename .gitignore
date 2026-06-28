@@ -12,8 +12,8 @@
 /storage/logs/*
 /storage/database/*.sqlite
 
-# Vendor
-/vendor/
+# Vendor (included for download)
+# /vendor/
 
 # Node
 /node_modules/
