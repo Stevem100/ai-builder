@@ -9,24 +9,24 @@
             <p>Sign in to your account</p>
         </div>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form id="loginForm" method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="form-group">
                 <label class="form-label" for="email">Email</label>
-                <input id="email" type="email" name="email" class="form-input" value="{{ old('email') }}" placeholder="you@example.com" required autofocus>
+                <input id="email" type="email" name="email" class="form-input" value="admin@ai-builder.com" required autofocus>
                 @error('email')<p style="color:#ef4444;font-size:0.8rem;margin-top:4px;">{{ $message }}</p>@enderror
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
-                <input id="password" type="password" name="password" class="form-input" placeholder="Enter password" required>
+                <input id="password" type="password" name="password" class="form-input" value="password" required>
                 @error('password')<p style="color:#ef4444;font-size:0.8rem;margin-top:4px;">{{ $message }}</p>@enderror
             </div>
 
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
                 <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:#94a3b8;cursor:pointer;">
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="accent-color:#3b82f6;">
+                    <input type="checkbox" name="remember" checked style="accent-color:#3b82f6;">
                     <span>Remember me</span>
                 </label>
                 <a href="#" style="font-size:0.85rem;color:#3b82f6;">Forgot password?</a>
@@ -46,4 +46,10 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('loginForm').submit();
+});
+</script>
 @overwrite
