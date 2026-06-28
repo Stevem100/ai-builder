@@ -1,0 +1,46 @@
+# PHP
+*.cache
+*.log
+*.pid
+
+# Laravel
+/app/Http/Middleware/PreventRequestsDuringMaintenance.php
+/bootstrap/cache/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/database/*.sqlite
+
+# Vendor
+/vendor/
+
+# Node
+/node_modules/
+
+# Build
+/public/build/
+/public/hot
+/public/storage
+
+# Environment
+.env
+.env.backup
+.env.local
+.env.*.local
+.phpunit.result.cache
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+/tool-results/
+/server-persistent.php
