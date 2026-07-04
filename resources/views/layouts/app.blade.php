@@ -16,8 +16,8 @@
 {{-- Auth pages: no sidebar --}}
 @yield('auth-content')
 
-{{-- Main app layout with sidebar --}}
-@section('app-layout')
+{{-- Main app layout with sidebar — only for authenticated users --}}
+@auth
 <div class="flex min-h-screen">
 
     {{-- Mobile overlay --}}
@@ -69,11 +69,11 @@
         {{-- User info --}}
         <div style="padding:0.75rem 1rem;border-top:1px solid #1e293b;display:flex;align-items:center;gap:0.625rem;">
             <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;color:white;">
-                {{ Auth::check() ? strtoupper(substr(Auth::user()->name, 0, 1)) : 'A' }}
+                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
             </div>
             <div style="flex:1;min-width:0;">
-                <div style="font-size:0.8rem;font-weight:500;color:#e2e8f0;" class="truncate">{{ Auth::check() ? Auth::user()->name : 'Admin User' }}</div>
-                <div style="font-size:0.7rem;color:#64748b;">{{ Auth::check() ? ucfirst(Auth::user()->role ?? 'admin') : 'Admin' }}</div>
+                <div style="font-size:0.8rem;font-weight:500;color:#e2e8f0;" class="truncate">{{ Auth::user()->name }}</div>
+                <div style="font-size:0.7rem;color:#64748b;">{{ ucfirst(Auth::user()->role ?? 'admin') }}</div>
             </div>
             <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                 @csrf
@@ -128,7 +128,7 @@
         </footer>
     </div>
 </div>
-@endsection
+@endauth
 
 <script>
 function toggleSidebar() {
@@ -139,11 +139,12 @@ function toggleSidebar() {
 }
 
 // Responsive: collapse sidebar on mobile
-if (window.innerWidth < 768) {
+if (window.innerWidth < 768 && document.getElementById('sidebar')) {
     document.getElementById('sidebar').style.transform = 'translateX(-100%)';
 }
 window.addEventListener('resize', () => {
     const s = document.getElementById('sidebar');
+    if (!s) return;
     if (window.innerWidth >= 768) {
         s.style.transform = 'translateX(0)';
         document.getElementById('sidebarOverlay').style.display = 'none';

@@ -9,7 +9,7 @@
             <p>Sign in to your account</p>
         </div>
 
-        <form id="loginForm" method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="form-group">
@@ -46,10 +46,4 @@
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('loginForm').submit();
-});
-</script>
 @overwrite
